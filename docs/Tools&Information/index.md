@@ -2,9 +2,7 @@
 
 This section contains the main tool pages and information pages used throughout KC Learning.
 
-[GitHub Repository :fontawesome-brands-github:](https://github.com/KC-OU/KCLEARNING){ .md-button .md-button--primary } [Trello Board :fontawesome-brands-trello:](https://trello.com/b/o3grdhdS/kc-learning-site-documentation){ .md-button } [Roadmap Board :fontawesome-brands-trello:](https://trello.com/b/C01DeJVb){ .md-button }
-
-## What this section includes { .collapsible }
+## What this section includes
 
 - **Information pages**  
   General reference pages, supporting guidance, and learning content.
@@ -15,7 +13,14 @@ This section contains the main tool pages and information pages used throughout 
 - **Tool pages**  
   Pages for the tools used across the site, including their purpose and how to use them.
 
-## [Information pages](information.md) { .collapsible }
+## [Tool pages](tools.md)
+These pages will include:
+
+ - List of Cyber Security Tools in Categories
+ - TLDR for each tool to ease of use and easy understanding
+ - Links to Trello for support and suggestions for additional tools
+
+## [Information pages](information.md)
 
 These pages will include:
 
@@ -24,14 +29,6 @@ These pages will include:
 - GRC learning content
 - Supporting guidance and references
 
-## [Tool pages](tools.md) { .collapsible }
-
-These pages will include:
-
- - List of Cyber Security Tools in Categories
- - TLDR for each tool to ease of use and easy understanding
- - Links to Trello for support and suggestions for additional tools
-
-## Purpose { .collapsible }
+## Purpose
 
 This area is designed to keep tools and information together in one place, making it easier to find guidance, reference material, and GRC-related content.
