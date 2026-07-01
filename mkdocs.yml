@@ -2,31 +2,33 @@ site_name: KC Learning Site (Documentation)
 repo_url: https://github.com/KC-OU/KCLEARNING
 # site_url: https://kc-ou.github.io/KCLEARNING
 repo_name: KC-OU/KCLEARNING
-
-# navigation
-nav:
-  - Home: "index.md"
-
+site_author: Kieran Collins
+copyright: Copyright &copy; 2026 Kieran Collins
 
 theme:
   # Theme: https://squidfunk.github.io/mkdocs-material/
   name: material
   features:
-    # QOL features
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - search.share
-    - navigation.tabs.sticky
-    - navigation.path
-    - toc.follow
-    - navigation.indexes
-    - content.tooltips
-    - navigation.instant
-    - navigation.sections
-    - content.code.copy
-    - content.code.annotate
-    - announce.dismiss
+  - content.code.select
+  - navigation.tabs
+  - navigation.top
+  - content.tooltips
+  - navigation.expand
+  - search.suggest
+  - search.highlight
+  - navigation.tracking
+  - search.share
+  - navigation.tabs.sticky
+  - navigation.path
+  - toc.follow
+  - navigation.indexes
+  - content.tooltips
+  - navigation.instant
+  - navigation.sections
+  - content.code.copy
+  - content.code.annotate
+  - announce.dismiss
+  - navigation.footer
   #logo: assets/logo.png
   #favicon: images/favicon.png
   font:
@@ -35,28 +37,64 @@ theme:
 
   # //TODO: Need to change the fonts
   palette:
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: "blue"
-      accent: "light blue"
-      toggle:
-        icon: material/brightness-4
-        name: Toggle light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: light
-      primary: "blue"
-      accent: "light blue"
-      toggle:
-        icon: material/brightness-7
-        name: Toggle dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: "blue"
+    accent: "light blue"
+    toggle:
+      icon: material/brightness-4
+      name: Toggle light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: light
+    primary: "blue"
+    accent: "light blue"
+    toggle:
+      icon: material/brightness-7
+      name: Toggle dark mode
+extra:
+  social:
+  - icon: fontawesome/brands/github
+    link: https://github.com/KC-OU
+  - icon: fontawesome/brands/trello
+    link: https://trello.com/b/o3grdhdS/kc-learning-site-documentation
+  consent:
+    title: Cookie Consent We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.
+
+extra_css:
+- stylesheets/extra.css
+
+extra_javascript:
+- javascripts/extra.js
+
 markdown_extensions:
-  - tables
-  - def_list
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - attr_list
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - md_in_html
-  # - neoteroi.cards
+- pymdownx.superfences
+- pymdownx.tabbed:
+    alternate_style: true
+- admonition
+- pymdownx.inlinehilite
+- pymdownx.snippets
+- pymdownx.details
+- pymdownx.superfences
+- tables
+- def_list
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+- pymdownx.tasklist:
+    custom_checkbox: true
+- attr_list
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji ""
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg ""
+- md_in_html
+# - neoteroi.cards
+
+
+# navigation
+nav:
+- Home: "index.md"
+- Tools & Information:
+  - Tools&Information/index.md
+  - Information: Tools&Information/information.md
+  - Tools: Tools&Information/tools.md

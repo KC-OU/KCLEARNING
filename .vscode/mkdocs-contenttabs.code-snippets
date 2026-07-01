@@ -1,0 +1,34 @@
+{
+  "MkDocs Material Content Tabs Example": {
+    "scope": "markdown",
+    "prefix": "tabsexample",
+    "body": [
+      "=== \"${1:Unordered List}\"",
+      "",
+      "\t``` ${2:markdown}",
+      "\t* ${3:Sed sagittis eleifend rutrum}",
+      "\t* ${4:Donec vitae suscipit est}",
+      "\t* ${5:Nulla tempor lobortis orci}",
+      "\t```",
+      "",
+      "=== \"${6:Ordered List}\"",
+      "",
+      "\t``` ${7:markdown}",
+      "\t1. ${8:Sed sagittis eleifend rutrum}",
+      "\t2. ${9:Donec vitae suscipit est}",
+      "\t3. ${10:Nulla tempor lobortis orci}",
+      "\t```"
+    ],
+    "description": "Insert MkDocs Material content tabs example with unordered and ordered lists"
+  },
+  "MkDocs Material Content Tabs (Generic)": {
+    "scope": "markdown",
+    "prefix": "tabs",
+    "body": [
+      "=== \"${1:Tab Title}\"",
+      "",
+      "\t$0"
+    ],
+    "description": "Insert standard MkDocs Material content tab"
+  }
+}
