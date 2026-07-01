@@ -264,3 +264,74 @@
   color: #ffffff !important;
 }
 
+/* TLDR Custom Syntax Highlighting (Terminal Style) */
+.tldr,
+.tldr pre,
+.tldr code {
+  background-color: #0c0c0c !important;
+}
+
+.tldr pre {
+  border-radius: 4px !important;
+  padding: 1rem !important;
+  margin: 0 !important;
+}
+
+.tldr code {
+  color: #e0e0e0 !important; /* Default light gray for variables and general text */
+  font-family: var(--md-code-font-family, monospace) !important;
+  line-height: 1.5 !important;
+  font-weight: 500 !important;
+  font-size: 0.75rem !important;
+}
+
+/* Force all generic code spans to inherit text color and ignore light theme overrides */
+.tldr code span {
+  color: #e0e0e0 !important;
+}
+
+/* Description / Comment lines (- text...) */
+.tldr span.tldr-comment {
+  color: #39FF14 !important; /* Neon green description */
+  font-weight: 400 !important;
+}
+
+/* Commands (e.g. hashcat...) */
+.tldr span.tldr-command {
+  color: #ff3333 !important; /* Terminal red command */
+  font-weight: bold !important;
+}
+
+/* Options (e.g. --hash-type, -attack-mode...) */
+.tldr span.tldr-option {
+  color: #ff3333 !important; /* Terminal red options */
+}
+
+/* Numbers (e.g. 3, 0, 1...) */
+.tldr span.tldr-number {
+  color: #ff3333 !important; /* Terminal red numbers */
+}
+
+/* Strings (e.g. "?d?d?d?d"...) */
+.tldr span.tldr-string {
+  color: #ff3333 !important; /* Terminal red quoted strings */
+}
+
+/* Style line numbers in TLDR blocks */
+.tldr [id^="__span"] a::before {
+  color: #555555 !important; /* Dark gray for line numbers */
+  background-color: transparent !important;
+}
+
+.tldr [id^="__span"] a {
+  border-right: 1px solid #222222 !important; /* Dark separator */
+  padding-right: 0.5rem !important;
+  margin-right: 0.5rem !important;
+  color: #555555 !important;
+}
+
+.tldr [id^="__span"] a:hover::before {
+  color: #888888 !important;
+}
+
+

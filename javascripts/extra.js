@@ -53,9 +53,9 @@ function initCollapsibleSections() {
   if (!contentArea || contentArea.dataset.collapsibleInitialized) return;
   contentArea.dataset.collapsibleInitialized = 'true';
 
-  // Collapse levels h6 down to h1 for hierarchical nesting (only for headings with .collapsible class)
+  // Collapse levels h6 down to h1 for hierarchical nesting (only for headings with .collapsible or .collapable class)
   for (let level = 6; level >= 1; level--) {
-    const headings = contentArea.querySelectorAll(`h${level}.collapsible`);
+    const headings = contentArea.querySelectorAll(`h${level}.collapsible, h${level}.collapable`);
     headings.forEach(heading => {
       if (heading.classList.contains('heading-collapsible')) return;
 
@@ -137,11 +137,66 @@ function initCollapsibleTabs() {
   });
 }
 
+function initTldrHighlighting() {
+  const spans = document.querySelectorAll('div.tldr pre code > span');
+  spans.forEach(span => {
+    if (span.dataset.tldrHighlighted) return;
+    span.dataset.tldrHighlighted = 'true';
+
+    const anchor = span.querySelector('a');
+    const line = span.textContent;
+    const trimmed = line.trim();
+
+    let highlightedHtml = '';
+    
+    if (trimmed.startsWith('-')) {
+      const commentContent = trimmed.substring(1).trim();
+      const leadingSpaces = line.match(/^(\s*)/)[0];
+      highlightedHtml = `${leadingSpaces}<span class="tldr-comment">- ${escapeHtml(commentContent)}</span>`;
+    } else if (trimmed) {
+      const leadingSpaces = line.match(/^(\s*)/)[0];
+      let cmdLine = escapeHtml(trimmed);
+      
+      // 1. Quoted strings (Red)
+      cmdLine = cmdLine.replace(/(&quot;.*?&quot;|&#39;.*?&#39;)/g, '<span class="tldr-string">$1</span>');
+      
+      // 2. Options (Red)
+      cmdLine = cmdLine.replace(/(^|\s)(--?[a-zA-Z0-9_-]+)/g, '$1<span class="tldr-option">$2</span>');
+      
+      // 3. Command name (Red)
+      cmdLine = cmdLine.replace(/^([^&<][a-zA-Z0-9_-]*)/, '<span class="tldr-command">$1</span>');
+
+      // 4. Standalone numbers (Red)
+      cmdLine = cmdLine.replace(/(^|\s)(\d+)(\s|$)/g, '$1<span class="tldr-number">$2</span>$3');
+      
+      highlightedHtml = leadingSpaces + cmdLine;
+    } else {
+      highlightedHtml = line;
+    }
+
+    span.innerHTML = '';
+    if (anchor) {
+      span.appendChild(anchor);
+    }
+    span.insertAdjacentHTML('beforeend', highlightedHtml);
+  });
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function initAll() {
   initReadingProgressBar();
   initHeaderTrelloLink();
   initCollapsibleSections();
   initCollapsibleTabs();
+  initTldrHighlighting();
 }
 
 if (document.readyState === 'loading') {
@@ -153,3 +208,4 @@ if (document.readyState === 'loading') {
 if (typeof document$ !== 'undefined') {
   document$.subscribe(initAll);
 }
+

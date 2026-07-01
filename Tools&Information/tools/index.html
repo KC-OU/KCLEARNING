@@ -494,17 +494,17 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#link-to-trello" class="md-nav__link">
+          <li class="md-nav__item">
+  <a href="#2-password-cracking-wordlist-generation" class="md-nav__link">
     <span class="md-ellipsis">
-      Link to Trello
+      2. Password Cracking &amp; Wordlist Generation
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -578,17 +578,17 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#link-to-trello" class="md-nav__link">
+          <li class="md-nav__item">
+  <a href="#2-password-cracking-wordlist-generation" class="md-nav__link">
     <span class="md-ellipsis">
-      Link to Trello
+      2. Password Cracking &amp; Wordlist Generation
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -623,16 +623,78 @@
 <hr />
 <h2 id="extensive-cyber-security-and-kali-linux-tools-master-list">Extensive Cyber Security and Kali Linux Tools Master List</h2>
 <p>This document provides a highly structured, extensive directory of operational cybersecurity tools. It synthesizes primary industry frameworks along with deep integrations extracted from Kali Linux system installations, purposefully filtering out base libraries to focus purely on functional security software.</p>
-<h3 id="1-social-engineering">1. Social Engineering</h3>
+<h3 class="collapsible" id="1-social-engineering">1. Social Engineering</h3>
 <p>Tools engineered to exploit systemic human and credential authorization workflows through phishing vectors, credential harvesting, or replication of authentication workflows.</p>
 <details class="info" open="open">
 <summary>No Tool will be added to this section</summary>
-<p>There is no Social Engineering Tool will be added to this section as most of them are python sctipts or web hosted tools.</p>
+<p>There is no Social Engineering Tool will be added to this section as most of them are python sctipts or web hosted tools. But if you have any idea or tool for this category please follow the trello board and add a suggestion</p>
 </details>
-<hr />
-<h2 id="link-to-trello"><strong>Link to Trello</strong></h2>
-<p>Here is a button that will take you to my trello page to give me comments and additioanl tools, so I can add them to the documentation</p>
-<p><a class="md-button" href="https://trello.com/b/o3grdhdS/kc-learning-site-documentation">Send <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.3 32H56.1C25.1 32 0 57.1 0 88c-.1 0 0-4 0 336 0 30.9 25.1 56 56 56h336.2c30.8-.2 55.7-25.2 55.7-56V88c.1-30.8-24.8-55.8-55.6-56M197 371.3c-.2 14.7-12.1 26.6-26.9 26.6H87.4c-14.8.1-26.9-11.8-27-26.6V117.1c0-14.8 12-26.9 26.9-26.9h82.9c14.8 0 26.9 12 26.9 26.9v254.2zm193.1-112c0 14.8-12 26.9-26.9 26.9h-81c-14.8 0-26.9-12-26.9-26.9V117.2c0-14.8 12-26.9 26.8-26.9h81.1c14.8 0 26.9 12 26.9 26.9z"/></svg></span></a></p>
+<h3 class="collapsible" id="2-password-cracking-wordlist-generation">2. Password Cracking &amp; Wordlist Generation</h3>
+<p>Utilities tasked with cryptographic verification analysis, dictionary synthesis, and computational parallel extraction of plain-text states.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Hashcat</label><label for="__tabbed_1_2">John the Ripper</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Hashcat is the world's fastest, GPU-accelerated open-source password cracking and recovery tool, used by cybersecurity professionals to test password strength. </p>
+<div class="language-text tldr highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Fast and advanced password recovery tool.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>More information: https://hashcat.net/wiki/doku.php?id=hashcat.
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>- Perform a brute-force attack (mode 3) with the default hashcat mask:
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>hashcat --hash-type hash_type_id --attack-mode 3 hash_value
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>- Perform a brute-force attack (mode 3) with a known pattern of 4 digits:
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>hashcat --hash-type hash_type_id --attack-mode 3 hash_value &quot;?d?d?d?d&quot;
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>- Perform a brute-force attack (mode 3) using at most 8 of all printable ASCII characters:
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>hashcat --hash-type hash_type_id --attack-mode 3 --increment hash_value &quot;?a?a?a?a?a?a?a?a&quot;
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>- Perform a dictionary attack (mode 0) using a wordlist:
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>hashcat --hash-type hash_type_id --attack-mode 0 hash_value path/to/wordlist.txt
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>- Run a dictionary attack (mode 0) using the specified wordlist, applying rule-based transformations to mutate candidate passwords:
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>hashcat --hash-type hash_type_id --attack-mode 0 --rules-file path/to/file.rule hash_value path/to/wordlist.txt
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>- Perform a combination attack (mode 1) using the concatenation of words from two different custom dictionaries:
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>hashcat --hash-type hash_type_id --attack-mode 1 hash_value path/to/dictionary1.txt path/to/dictionary2.txt
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>- Show result of an already cracked hash:
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>hashcat --show hash_value
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>- Show all example hashes:
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>hashcat --example-hashes
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>John the Ripper is a tool designed to help systems administrators to find weak (easy to guess or crack through brute force) passwords, and even automatically mail users warning them about it, if it is desired.</p>
+<div class="language-text tldr highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Password cracker.
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>More information: https://www.openwall.com/john/.
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a> - Crack password hashes:
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>john path/to/hashes.txt
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>- Show passwords cracked:
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>john --show path/to/hashes.txt
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>- Display users&#39; cracked passwords by user identifier from multiple files:
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>john --show --users=user_ids path/to/hashes1.txt path/to/hashes2.txt ...
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>- Crack password hashes, using a custom wordlist:
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>john --wordlist=path/to/wordlist.txt path/to/hashes.txt
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>- List available hash formats:
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>john --list=formats
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>- Crack password hashes, using a specific hash format:
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>john --format=md5crypt path/to/hashes.txt
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>- Crack password hashes, enabling word mangling rules:
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>john --rules path/to/hashes.txt
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>- Restore an interrupted cracking session from a state file, e.g. mycrack.rec:
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>john --restore=path/to/mycrack.rec
+</span></code></pre></div>
+</div>
+</div>
+</div>
 
 
 
@@ -739,7 +801,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.expand", "search.suggest", "search.highlight", "navigation.tracking", "search.share", "navigation.tabs.sticky", "navigation.path", "toc.follow", "navigation.indexes", "content.tooltips", "navigation.instant", "navigation.sections", "content.code.copy", "content.code.annotate", "announce.dismiss", "navigation.footer"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.select", "navigation.tabs", "navigation.top", "navigation.expand", "search.suggest", "search.highlight", "navigation.tracking", "search.share", "navigation.tabs.sticky", "navigation.path", "toc.follow", "navigation.indexes", "content.tooltips", "navigation.instant", "navigation.sections", "content.code.copy", "content.code.annotate", "announce.dismiss", "navigation.footer"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
