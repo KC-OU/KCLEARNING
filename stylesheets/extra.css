@@ -1,0 +1,266 @@
+/* Custom styling for KC Learning Site */
+
+/* Reading Progress Bar */
+#reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, #0094ff, #00ffcc, #0079BF);
+  z-index: 1000;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
+  pointer-events: none;
+}
+
+
+/* Header styling for multiple source buttons (GitHub + Trello) */
+.md-header__source {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+
+/* Glassmorphic Pill styling for the Trello button */
+.header-trello-with-text {
+  display: flex !important;
+  align-items: center !important;
+  height: 1.8rem !important;
+  padding: 0 0.7rem !important;
+  gap: 0.4rem !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  font-size: 0.62rem !important;
+  font-weight: 700 !important;
+  line-height: normal !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 20px !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.header-trello-with-text:hover {
+  background-color: #ffffff !important;
+  color: #0079BF !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6) !important;
+  transform: translateY(-1px) scale(1.03);
+}
+
+.header-trello-icon {
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.header-trello-icon svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  fill: #ffffff !important;
+  transition: fill 0.25s ease, transform 0.25s ease;
+}
+
+.header-trello-with-text:hover .header-trello-icon svg {
+  fill: #0079BF !important;
+  transform: rotate(6deg) scale(1.08);
+}
+
+.header-trello-text {
+  white-space: nowrap !important;
+}
+
+/* Responsive: hide text on smaller screen sizes matching the default repo link */
+@media screen and (max-width: 76.234375em) {
+  .header-trello-text {
+    display: none !important;
+  }
+  .header-trello-with-text {
+    padding: 0 0.3rem !important;
+    width: 1.8rem !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+  }
+
+}
+
+/* Repo and Trello Links Button Container on index page */
+.repo-trello-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.repo-trello-links .md-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.repo-trello-links .md-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Collapsible Headings styling */
+.heading-collapsible {
+  cursor: pointer;
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  padding-left: 4px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.heading-collapsible:hover {
+  border-left-color: var(--md-primary-color);
+  background-color: var(--md-default-fg-color--miniscule);
+}
+
+.heading-collapse-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.heading-collapse-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--md-default-fg-color--light);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.heading-collapsed .heading-collapse-toggle svg {
+  transform: rotate(-90deg); /* Points right when collapsed */
+}
+
+.heading-collapsible:not(.heading-collapsed) .heading-collapse-toggle svg {
+  transform: rotate(0deg); /* Points down when expanded */
+}
+
+/* Section Collapse Wrapper */
+.heading-collapse-wrapper {
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-out;
+  opacity: 1;
+}
+
+/* Collapsible Tabs styling */
+.tabbed-set.tabbed-collapsed .tabbed-content {
+  max-height: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden;
+  border: none !important;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease-out, padding 0.35s ease-out;
+}
+
+.tabbed-set:not(.tabbed-collapsed) .tabbed-content {
+  max-height: 5000px; /* high limit to fit content */
+  opacity: 1;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-in, padding 0.35s ease-in;
+}
+
+/* Active tab style when collapsed */
+.tabbed-set.tabbed-collapsed .tabbed-labels label {
+  border-bottom: 2px dashed var(--md-accent-color, #0094ff) !important;
+  opacity: 0.7;
+}
+
+/* Hover style for tabs to invite interaction */
+.tabbed-labels label {
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.tabbed-labels label:hover {
+  opacity: 0.95;
+  background-color: var(--md-default-fg-color--miniscule);
+}
+
+/* Footer elements glassmorphism */
+
+/* Glassmorphic Social icons */
+.md-social__link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 2.0rem !important;
+  height: 2.0rem !important;
+  border-radius: 50% !important; /* perfect circular shape */
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: var(--md-footer-fg-color, rgba(255, 255, 255, 0.7)) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+.md-social__link:hover {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  color: var(--md-primary-color, #0079BF) !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.45) !important;
+  transform: translateY(-2px) scale(1.08) !important;
+}
+
+.md-social__link svg {
+  width: 1.0rem !important;
+  height: 1.0rem !important;
+  fill: currentColor !important;
+}
+
+/* Glassmorphic Footer Navigation cards */
+.md-footer__link {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 0.6rem 1rem !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex !important;
+  align-items: center !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12) !important;
+  text-decoration: none !important;
+}
+
+.md-footer__link:hover {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+.md-footer__link .md-footer__direction {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 0.62rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  transition: color 0.25s;
+}
+
+.md-footer__link:hover .md-footer__direction {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.md-footer__link .md-footer__title {
+  color: #ffffff !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  margin-top: 0.2rem !important;
+  transition: color 0.25s;
+}
+
+.md-footer__link:hover .md-footer__title {
+  color: #ffffff !important;
+}
+
