@@ -15,19 +15,19 @@ function initReadingProgressBar() {
   });
 }
 
-function initHeaderTrelloLink() {
+function initHeaderTrelloLinks() {
   if (document.getElementById('header-trello-link')) return;
 
   const headerSource = document.querySelector('.md-header__source');
   if (headerSource) {
+    // 1. Trello Board Button
     const trelloLink = document.createElement('a');
     trelloLink.id = 'header-trello-link';
-    trelloLink.href = 'https://trello.com/b/o3grdhdS/kc-learning-site-documentation';
+    trelloLink.href = 'https://trello.com/b/o3grdhdS';
     trelloLink.target = '_blank';
     trelloLink.rel = 'noopener';
-    trelloLink.title = 'Trello Board';
+    trelloLink.title = 'Feedback Board';
     trelloLink.className = 'header-trello-with-text';
-    
     trelloLink.innerHTML = `
       <span class="header-trello-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -35,13 +35,33 @@ function initHeaderTrelloLink() {
         </svg>
       </span>
       <span class="header-trello-text">
-        Trello Board
+        Feedback
+      </span>
+    `;
+
+    // 2. Roadmap Button
+    const roadmapLink = document.createElement('a');
+    roadmapLink.id = 'header-trello-roadmap-link';
+    roadmapLink.href = 'https://trello.com/b/C01DeJVb';
+    roadmapLink.target = '_blank';
+    roadmapLink.rel = 'noopener';
+    roadmapLink.title = 'Roadmap Board';
+    roadmapLink.className = 'header-trello-with-text header-trello-roadmap';
+    roadmapLink.innerHTML = `
+      <span class="header-trello-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M390.12 32H57.88C43.6 32 32 43.6 32 57.88v396.24C32 468.4 43.6 480 57.88 480h332.24c14.28 0 25.88-11.6 25.88-25.88V57.88C416 43.6 404.4 32 390.12 32zm-207 325.07c0 14.12-11.48 25.6-25.6 25.6H98.92c-14.12 0-25.6-11.48-25.6-25.6V122.93c0-14.12 11.48-25.6 25.6-25.6h58.6c14.12 0 25.6 11.48 25.6 25.6v234.14zm168-128c0 14.12-11.48 25.6-25.6 25.6h-58.6c-14.12 0-25.6-11.48-25.6-25.6V122.93c0-14.12 11.48-25.6 25.6-25.6h58.6c14.12 0 25.6 11.48 25.6 25.6v106.14z"/>
+        </svg>
+      </span>
+      <span class="header-trello-text">
+        Roadmap
       </span>
     `;
     
     const gitSource = headerSource.querySelector('.md-source');
     if (gitSource) {
       gitSource.parentNode.insertBefore(trelloLink, gitSource.nextSibling);
+      trelloLink.parentNode.insertBefore(roadmapLink, trelloLink.nextSibling);
     }
   }
 }
@@ -193,7 +213,7 @@ function escapeHtml(str) {
 
 function initAll() {
   initReadingProgressBar();
-  initHeaderTrelloLink();
+  initHeaderTrelloLinks();
   initCollapsibleSections();
   initCollapsibleTabs();
   initTldrHighlighting();
