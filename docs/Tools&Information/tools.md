@@ -88,3 +88,83 @@ Utilities tasked with cryptographic verification analysis, dictionary synthesis,
     - Restore an interrupted cracking session from a state file, e.g. mycrack.rec:
     john --restore=path/to/mycrack.rec
     ```
+=== "Hydra"
+    Hydra is a parallelized login cracker which supports numerous protocols to attack. It is very fast and flexible, and new modules are easy to add.
+    ```text { .tldr }
+    Online password guessing tool.
+    Protocols supported include FTP, HTTP(S), SMTP, SNMP, XMPP, SSH, and more.
+    More information: https://manned.org/hydra.
+
+    - Start Hydra's wizard:
+    hydra-wizard
+
+    - Guess SSH credentials using a given username and a list of passwords:
+    hydra -l username -P path/to/wordlist.txt host_ip ssh
+
+    - Guess HTTPS webform credentials using two specific lists of usernames and passwords ("https_post_request" can be like "username=^USER^&password=^PASS^"):
+    hydra -L path/to/usernames.txt -P path/to/wordlist.txt host_ip https-post-form "url_without_host:https_post_request:login_failed_string"
+
+    - Guess FTP credentials using usernames and passwords lists, specifying the number of threads:
+    hydra -L path/to/usernames.txt -P path/to/wordlist.txt -t n_tasks host_ip ftp
+
+    - Guess MySQL credentials using a username and a passwords list, exiting when a username/password pair is found:
+    hydra -l username -P path/to/wordlist.txt -f host_ip mysql
+
+    - Guess RDP credentials using a username and a passwords list, showing each attempt:
+    hydra -l username -P path/to/wordlist.txt -V rdp://host_ip
+
+    - Guess IMAP credentials on a range of hosts using a list of colon-separated username/password pairs:
+    hydra -C path/to/username_password_pairs.txt imap://[host_range_cidr]
+
+    - Guess POP3 credentials on a list of hosts using usernames and passwords lists, exiting when a username/password pair is found:
+    hydra -L path/to/usernames.txt -P path/to/wordlist.txt -M path/to/hosts.txt -F pop3
+    ```
+=== "Medusa"
+    Medusa is intended to be a speedy, massively parallel, modular, login brute-forcer. The goal is to support as many services which allow remote authentication as possible.
+    ```text { .tldr }
+    A modular and parallel login brute-forcer for a variety of protocols.
+    More information: https://manned.org/medusa.
+
+    - List all installed modules:
+    medusa -d
+
+    - Show usage example of a specific module (use medusa -d for listing all installed modules):
+    medusa -M ssh|http|web-form|postgres|ftp|mysql|... -q
+
+    - Execute brute force against an FTP server using a file containing usernames and a file containing passwords:
+    medusa -M ftp -h host -U path/to/username_file -P path/to/password_file
+
+    - Execute a login attempt against an HTTP server using the username, password, and user-agent specified:
+    medusa -M HTTP -h host -u username -p password -m USER-AGENT:"Agent"
+
+    - Execute a brute force against a MySQL server using a file containing usernames and a hash:
+    medusa -M mysql -h host -U path/to/username_file -p hash -m PASS:HASH
+
+    - Execute a brute force against a list of SMB servers using a username and a pwdump file:
+    medusa -M smbnt -H path/to/hosts_file -C path/to/pwdump_file -u username -m PASS:HASH
+    ```
+=== "Bopscrk"
+    Targeted-attack wordlist creator: introduce personal info related to target, combines every word and transforms results into possible passwords. The lyricpass module allows one to search lyrics related to artists and include them to the wordlists
+
+    ???+ info "No TLDR for this tool"
+        There is no TLDR for Bopscrk, but here is the usage promt when you run bopscrk
+
+    ```sh
+    usage: bopscrk [-h] [-i] [-w ] [-m ] [-M ] [-c] [-l] [-n ] [-a ] [-o ] [-C ] [--version]
+    Generates smart and powerful wordlists.
+
+    options:
+    -h, --help         show this help message and exit
+    -i, --interactive  interactive mode, the script will ask you about target
+    -w                 words to combine comma-separated (will be combined with all words)
+    -m, --min          min length for the words to generate (default: 4)
+    -M, --max          max length for the words to generate (default: 12)
+    -c, --case         enable case transformations
+    -l, --leet         enable leet transformations
+    -n                 max amount of words to combine each time (default: 2)
+    -a, --artists      artists to search song lyrics (comma-separated)
+    -o, --output       output file to save the wordlist (default: tmp.txt)
+    -C, --config       specify config file to use (default: /usr/lib/python3/dist-
+                     packages/bopscrk/bopscrk.cfg)
+    --version          print version and exit
+    ```

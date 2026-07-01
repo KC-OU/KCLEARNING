@@ -631,7 +631,7 @@
 </details>
 <h3 class="collapsible" id="2-password-cracking-wordlist-generation">2. Password Cracking &amp; Wordlist Generation</h3>
 <p>Utilities tasked with cryptographic verification analysis, dictionary synthesis, and computational parallel extraction of plain-text states.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Hashcat</label><label for="__tabbed_1_2">John the Ripper</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Hashcat</label><label for="__tabbed_1_2">John the Ripper</label><label for="__tabbed_1_3">Hydra</label><label for="__tabbed_1_4">Medusa</label><label for="__tabbed_1_5">Bopscrk</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Hashcat is the world's fastest, GPU-accelerated open-source password cracking and recovery tool, used by cybersecurity professionals to test password strength. </p>
@@ -691,6 +691,86 @@
 </span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
 </span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>- Restore an interrupted cracking session from a state file, e.g. mycrack.rec:
 </span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>john --restore=path/to/mycrack.rec
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Hydra is a parallelized login cracker which supports numerous protocols to attack. It is very fast and flexible, and new modules are easy to add.
+<div class="language-text tldr highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Online password guessing tool.
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Protocols supported include FTP, HTTP(S), SMTP, SNMP, XMPP, SSH, and more.
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>More information: https://manned.org/hydra.
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>- Start Hydra&#39;s wizard:
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>hydra-wizard
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>- Guess SSH credentials using a given username and a list of passwords:
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>hydra -l username -P path/to/wordlist.txt host_ip ssh
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>- Guess HTTPS webform credentials using two specific lists of usernames and passwords (&quot;https_post_request&quot; can be like &quot;username=^USER^&amp;password=^PASS^&quot;):
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>hydra -L path/to/usernames.txt -P path/to/wordlist.txt host_ip https-post-form &quot;url_without_host:https_post_request:login_failed_string&quot;
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>- Guess FTP credentials using usernames and passwords lists, specifying the number of threads:
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>hydra -L path/to/usernames.txt -P path/to/wordlist.txt -t n_tasks host_ip ftp
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>- Guess MySQL credentials using a username and a passwords list, exiting when a username/password pair is found:
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>hydra -l username -P path/to/wordlist.txt -f host_ip mysql
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>- Guess RDP credentials using a username and a passwords list, showing each attempt:
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>hydra -l username -P path/to/wordlist.txt -V rdp://host_ip
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>- Guess IMAP credentials on a range of hosts using a list of colon-separated username/password pairs:
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>hydra -C path/to/username_password_pairs.txt imap://[host_range_cidr]
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>- Guess POP3 credentials on a list of hosts using usernames and passwords lists, exiting when a username/password pair is found:
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>hydra -L path/to/usernames.txt -P path/to/wordlist.txt -M path/to/hosts.txt -F pop3
+</span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p>Medusa is intended to be a speedy, massively parallel, modular, login brute-forcer. The goal is to support as many services which allow remote authentication as possible.
+<div class="language-text tldr highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>A modular and parallel login brute-forcer for a variety of protocols.
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>More information: https://manned.org/medusa.
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>- List all installed modules:
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>medusa -d
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>- Show usage example of a specific module (use medusa -d for listing all installed modules):
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>medusa -M ssh|http|web-form|postgres|ftp|mysql|... -q
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>- Execute brute force against an FTP server using a file containing usernames and a file containing passwords:
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>medusa -M ftp -h host -U path/to/username_file -P path/to/password_file
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>- Execute a login attempt against an HTTP server using the username, password, and user-agent specified:
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>medusa -M HTTP -h host -u username -p password -m USER-AGENT:&quot;Agent&quot;
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>- Execute a brute force against a MySQL server using a file containing usernames and a hash:
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>medusa -M mysql -h host -U path/to/username_file -p hash -m PASS:HASH
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>- Execute a brute force against a list of SMB servers using a username and a pwdump file:
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>medusa -M smbnt -H path/to/hosts_file -C path/to/pwdump_file -u username -m PASS:HASH
+</span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p>Targeted-attack wordlist creator: introduce personal info related to target, combines every word and transforms results into possible passwords. The lyricpass module allows one to search lyrics related to artists and include them to the wordlists</p>
+<details class="info" open="open">
+<summary>No TLDR for this tool</summary>
+<p>There is no TLDR for Bopscrk, but here is the usage promt when you run bopscrk</p>
+</details>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>usage:<span class="w"> </span>bopscrk<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-i<span class="o">]</span><span class="w"> </span><span class="o">[</span>-w<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">[</span>-m<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">[</span>-M<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">[</span>-c<span class="o">]</span><span class="w"> </span><span class="o">[</span>-l<span class="o">]</span><span class="w"> </span><span class="o">[</span>-n<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">[</span>-a<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">[</span>-o<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">[</span>-C<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">[</span>--version<span class="o">]</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Generates<span class="w"> </span>smart<span class="w"> </span>and<span class="w"> </span>powerful<span class="w"> </span>wordlists.
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>options:
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>-h,<span class="w"> </span>--help<span class="w">         </span>show<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>-i,<span class="w"> </span>--interactive<span class="w">  </span>interactive<span class="w"> </span>mode,<span class="w"> </span>the<span class="w"> </span>script<span class="w"> </span>will<span class="w"> </span>ask<span class="w"> </span>you<span class="w"> </span>about<span class="w"> </span>target
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>-w<span class="w">                 </span>words<span class="w"> </span>to<span class="w"> </span>combine<span class="w"> </span>comma-separated<span class="w"> </span><span class="o">(</span>will<span class="w"> </span>be<span class="w"> </span>combined<span class="w"> </span>with<span class="w"> </span>all<span class="w"> </span>words<span class="o">)</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>-m,<span class="w"> </span>--min<span class="w">          </span>min<span class="w"> </span>length<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>words<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">4</span><span class="o">)</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>-M,<span class="w"> </span>--max<span class="w">          </span>max<span class="w"> </span>length<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>words<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">12</span><span class="o">)</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>-c,<span class="w"> </span>--case<span class="w">         </span><span class="nb">enable</span><span class="w"> </span><span class="k">case</span><span class="w"> </span>transformations
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>-l,<span class="w"> </span>--leet<span class="w">         </span><span class="nb">enable</span><span class="w"> </span>leet<span class="w"> </span>transformations
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>-n<span class="w">                 </span>max<span class="w"> </span>amount<span class="w"> </span>of<span class="w"> </span>words<span class="w"> </span>to<span class="w"> </span>combine<span class="w"> </span>each<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">2</span><span class="o">)</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>-a,<span class="w"> </span>--artists<span class="w">      </span>artists<span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span>song<span class="w"> </span>lyrics<span class="w"> </span><span class="o">(</span>comma-separated<span class="o">)</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>-o,<span class="w"> </span>--output<span class="w">       </span>output<span class="w"> </span>file<span class="w"> </span>to<span class="w"> </span>save<span class="w"> </span>the<span class="w"> </span>wordlist<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>tmp.txt<span class="o">)</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>-C,<span class="w"> </span>--config<span class="w">       </span>specify<span class="w"> </span>config<span class="w"> </span>file<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>/usr/lib/python3/dist-
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">                 </span>packages/bopscrk/bopscrk.cfg<span class="o">)</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>--version<span class="w">          </span>print<span class="w"> </span>version<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
 </span></code></pre></div>
 </div>
 </div>
