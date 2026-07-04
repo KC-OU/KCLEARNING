@@ -582,7 +582,7 @@
 </details>
 <h3 class="collapsible" id="2-password-cracking-wordlist-generation">2. Password Cracking &amp; Wordlist Generation</h3>
 <p>Utilities tasked with cryptographic verification analysis, dictionary synthesis, and computational parallel extraction of plain-text states.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Hashcat</label><label for="__tabbed_1_2">John the Ripper</label><label for="__tabbed_1_3">Hydra</label><label for="__tabbed_1_4">Medusa</label><label for="__tabbed_1_5">Bopscrk</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:10"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><input id="__tabbed_1_8" name="__tabbed_1" type="radio" /><input id="__tabbed_1_9" name="__tabbed_1" type="radio" /><input id="__tabbed_1_10" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Hashcat</label><label for="__tabbed_1_2">John the Ripper</label><label for="__tabbed_1_3">Hydra</label><label for="__tabbed_1_4">Medusa</label><label for="__tabbed_1_5">Bopscrk</label><label for="__tabbed_1_6">Brutespray</label><label for="__tabbed_1_7">cewl</label><label for="__tabbed_1_8">Chntpw</label><label for="__tabbed_1_9">Crunch</label><label for="__tabbed_1_10">FCrackZip</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Hashcat is the world's fastest, GPU-accelerated open-source password cracking and recovery tool, used by cybersecurity professionals to test password strength. </p>
@@ -722,6 +722,120 @@
 </span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>-C,<span class="w"> </span>--config<span class="w">       </span>specify<span class="w"> </span>config<span class="w"> </span>file<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span>/usr/lib/python3/dist-
 </span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">                 </span>packages/bopscrk/bopscrk.cfg<span class="o">)</span>
 </span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>--version<span class="w">          </span>print<span class="w"> </span>version<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Brutespray automatically attempts default credentials on discovered services. It takes scan output from Nmap (GNMAP/XML), Nessus, Nexpose, JSON, and lists, then brute-forces credentials across 40+ protocols in parallel. Built in Go with an interactive terminal UI, embedded wordlists, and resume capability.</p>
+<details class="info" open="open">
+<summary>No TLDR for this tool</summary>
+<p>There is no TLDR for Brutespray, but I found Quick Start on Github for the basic commands</p>
+</details>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># From Nmap scan output</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>brutespray<span class="w"> </span>-f<span class="w"> </span>nmap.gnmap<span class="w"> </span>-u<span class="w"> </span>admin<span class="w"> </span>-p<span class="w"> </span>password
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Target a specific host</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>brutespray<span class="w"> </span>-H<span class="w"> </span>ssh://192.168.1.1:22<span class="w"> </span>-u<span class="w"> </span>admin<span class="w"> </span>-p<span class="w"> </span>passlist.txt
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># CIDR range</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>brutespray<span class="w"> </span>-H<span class="w"> </span>ssh://10.1.1.0/24:22<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>passlist.txt
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Combo credentials</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>brutespray<span class="w"> </span>-H<span class="w"> </span>ssh://10.0.0.1:22<span class="w"> </span>-C<span class="w"> </span>root:root
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Based on a discussion on PaulDotCom (episode 129) about creating custom word lists spidering a targets website and collecting unique words I decided to write CeWL, the Custom Word List generator. CeWL is a ruby app which spiders a given URL to a specified depth, optionally following external links, and returns a list of words which can then be used for password crackers such as John the Ripper.
+<div class="language-text tldr highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>URL spidering tool for making a cracking wordlist from web content.
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>More information: https://digi.ninja/projects/cewl.php#usage.
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>- Create a wordlist file from the given URL up to 2 links depth:
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>cewl --depth 2 --write path/to/wordlist.txt url
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>- Output an alphanumeric wordlist from the given URL with words of minimum 5 characters:
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>cewl --with-numbers --min_word_length 5 url
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>- Output a wordlist from the given URL in debug mode including email addresses:
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>cewl --debug --email url
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>- Output a wordlist from the given URL using HTTP Basic or Digest authentication:
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>cewl --auth_type basic|digest --auth_user username --auth_pass password url
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>- Output a wordlist from the given URL through a proxy:
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>cewl --proxy_host host --proxy_port port url
+</span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p>Chntpw (Offline NT Password &amp; Registry Editor) is a command-line utility used to reset or blank local Windows passwords. By editing the SAM (Security Account Manager) database on an unmounted disk, it bypasses the need for the original password, allowing you to regain access to locked local accounts.
+<div class="language-text tldr highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>chntpw
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>A utility that can edit windows registry, reset user password, promote users to administrator by modifying the Windows SAM.
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Boot target machine with live cd like Kali Linux and run with elevated privileges.
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>More information: https://pogostick.net/~pnh/ntpasswd/MANUAL.txt.
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>- List all users in the SAM file:
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>chntpw -l path/to/sam_file
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>- Edit user interactively:
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>chntpw -u username path/to/sam_file
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>- Use chntpw interactively:
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>chntpw -i path/to/sam_file
+</span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p>Crunch is a wordlist generator where you can specify a standard character set or a character set you specify. crunch can generate all possible combinations and permutations.
+<div class="language-text tldr highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>crunch
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Wordlist generator.
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>More information: https://manned.org/crunch.
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>- Output a list of words of length 1 to 3 with only lowercase characters:
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>crunch 1 3
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>- Output a list of hexadecimal words of length 8:
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>crunch 8 8 0123456789abcdef
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>- Output a list of all permutations of abc (lengths are not processed):
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>crunch 1 1 -p abc
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>- Output a list of all permutations of the given strings (lengths are not processed):
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>crunch 1 1 -p abc def ghi
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>- Output a list of words generated according to the given pattern and a maximum number of duplicate letters:
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>crunch 5 5 abcde123 -t @@@12 -d 2@
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>- Write a list of words in chunk files of a given size, starting with the given string:
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>crunch 3 5 -o START -b 10kb -s abc
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>- Write a list of words stopping with the given string and inverting the wordlist:
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>crunch 1 5 -o START -e abcde -i
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>- Write a list of words in compressed chunk files with a specified number of words:
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>crunch 1 5 -o START -c 1000 -z gzip|bzip2|lzma|7z
+</span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p>fcrackzip is a free, command-line ZIP password cracking utility. It supports brute-force and dictionary attacks, and can crack standard ZIP encryption. It is widely used in penetration testing and forensics.</p>
+<div class="language-text tldr highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>fcrackzip
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>ZIP archive password cracking utility.
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>More information: https://manned.org/fcrackzip.
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>- Brute-force a password with a length of 4 to 8 characters and contains only alphanumeric characters (order matters):
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>fcrackzip --brute-force --length 4-8 --charset aA1 archive
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>- Brute-force a password in verbose mode with a length of 3 characters that only contains lowercase characters, $, and %:
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>fcrackzip --verbose --brute-force --length 3 --charset a:$% archive
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>- Brute-force a password that contains only lowercase and special characters:
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>fcrackzip --brute-force --length 4 --charset a! archive
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>- Brute-force a password containing only digits, starting from the password 12345:
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>fcrackzip --brute-force --length 5 --charset 1 --init-password 12345 archive
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>- Crack a password using a wordlist:
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>fcrackzip --use-unzip --dictionary --init-password wordlist archive
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>- Benchmark cracking performance:
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>fcrackzip --benchmark
 </span></code></pre></div>
 </div>
 </div>

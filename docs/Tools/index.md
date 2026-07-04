@@ -168,3 +168,120 @@ Utilities tasked with cryptographic verification analysis, dictionary synthesis,
                      packages/bopscrk/bopscrk.cfg)
     --version          print version and exit
     ```
+=== "Brutespray"
+    Brutespray automatically attempts default credentials on discovered services. It takes scan output from Nmap (GNMAP/XML), Nessus, Nexpose, JSON, and lists, then brute-forces credentials across 40+ protocols in parallel. Built in Go with an interactive terminal UI, embedded wordlists, and resume capability.
+
+    ???+ info "No TLDR for this tool"
+        There is no TLDR for Brutespray, but I found Quick Start on Github for the basic commands
+
+    ```sh
+    # From Nmap scan output
+    brutespray -f nmap.gnmap -u admin -p password
+
+    # Target a specific host
+    brutespray -H ssh://192.168.1.1:22 -u admin -p passlist.txt
+
+    # CIDR range
+    brutespray -H ssh://10.1.1.0/24:22 -u root -p passlist.txt
+
+    # Combo credentials
+    brutespray -H ssh://10.0.0.1:22 -C root:root
+    ``` 
+
+=== "cewl"
+    Based on a discussion on PaulDotCom (episode 129) about creating custom word lists spidering a targets website and collecting unique words I decided to write CeWL, the Custom Word List generator. CeWL is a ruby app which spiders a given URL to a specified depth, optionally following external links, and returns a list of words which can then be used for password crackers such as John the Ripper.
+    ```text { .tldr }
+    URL spidering tool for making a cracking wordlist from web content.
+    More information: https://digi.ninja/projects/cewl.php#usage.
+
+    - Create a wordlist file from the given URL up to 2 links depth:
+    cewl --depth 2 --write path/to/wordlist.txt url
+
+    - Output an alphanumeric wordlist from the given URL with words of minimum 5 characters:
+    cewl --with-numbers --min_word_length 5 url
+
+    - Output a wordlist from the given URL in debug mode including email addresses:
+    cewl --debug --email url
+
+    - Output a wordlist from the given URL using HTTP Basic or Digest authentication:
+    cewl --auth_type basic|digest --auth_user username --auth_pass password url
+
+    - Output a wordlist from the given URL through a proxy:
+    cewl --proxy_host host --proxy_port port url
+    ```
+=== "Chntpw"
+    Chntpw (Offline NT Password & Registry Editor) is a command-line utility used to reset or blank local Windows passwords. By editing the SAM (Security Account Manager) database on an unmounted disk, it bypasses the need for the original password, allowing you to regain access to locked local accounts.
+    ```text { .tldr }
+    chntpw
+
+    A utility that can edit windows registry, reset user password, promote users to administrator by modifying the Windows SAM.
+    Boot target machine with live cd like Kali Linux and run with elevated privileges.
+    More information: https://pogostick.net/~pnh/ntpasswd/MANUAL.txt.
+
+    - List all users in the SAM file:
+    chntpw -l path/to/sam_file
+    - Edit user interactively:
+    chntpw -u username path/to/sam_file
+    - Use chntpw interactively:
+    chntpw -i path/to/sam_file
+    ```
+=== "Crunch"
+    Crunch is a wordlist generator where you can specify a standard character set or a character set you specify. crunch can generate all possible combinations and permutations.
+    ```text { .tldr }
+    crunch
+
+    Wordlist generator.
+    More information: https://manned.org/crunch.
+
+    - Output a list of words of length 1 to 3 with only lowercase characters:
+    crunch 1 3
+
+    - Output a list of hexadecimal words of length 8:
+    crunch 8 8 0123456789abcdef
+
+    - Output a list of all permutations of abc (lengths are not processed):
+    crunch 1 1 -p abc
+
+    - Output a list of all permutations of the given strings (lengths are not processed):
+    crunch 1 1 -p abc def ghi
+
+    - Output a list of words generated according to the given pattern and a maximum number of duplicate letters:
+    crunch 5 5 abcde123 -t @@@12 -d 2@
+
+    - Write a list of words in chunk files of a given size, starting with the given string:
+    crunch 3 5 -o START -b 10kb -s abc
+
+    - Write a list of words stopping with the given string and inverting the wordlist:
+    crunch 1 5 -o START -e abcde -i
+
+    - Write a list of words in compressed chunk files with a specified number of words:
+    crunch 1 5 -o START -c 1000 -z gzip|bzip2|lzma|7z
+    ```
+=== "FCrackZip"
+    fcrackzip is a free, command-line ZIP password cracking utility. It supports brute-force and dictionary attacks, and can crack standard ZIP encryption. It is widely used in penetration testing and forensics.
+
+    ```text { .tldr }
+    fcrackzip
+
+    ZIP archive password cracking utility.
+    More information: https://manned.org/fcrackzip.
+
+    - Brute-force a password with a length of 4 to 8 characters and contains only alphanumeric characters (order matters):
+    fcrackzip --brute-force --length 4-8 --charset aA1 archive
+
+    - Brute-force a password in verbose mode with a length of 3 characters that only contains lowercase characters, $, and %:
+    fcrackzip --verbose --brute-force --length 3 --charset a:$% archive
+
+    - Brute-force a password that contains only lowercase and special characters:
+    fcrackzip --brute-force --length 4 --charset a! archive
+
+    - Brute-force a password containing only digits, starting from the password 12345:
+    fcrackzip --brute-force --length 5 --charset 1 --init-password 12345 archive
+
+    - Crack a password using a wordlist:
+    fcrackzip --use-unzip --dictionary --init-password wordlist archive
+
+    - Benchmark cracking performance:
+    fcrackzip --benchmark
+    ```
+
