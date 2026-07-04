@@ -29,8 +29,8 @@ theme:
   - content.code.annotate
   - announce.dismiss
   - navigation.footer
-  #logo: assets/logo.png
-  #favicon: images/favicon.png
+  logo: assets/images/favicon.png
+  favicon: assets/images/favicon.png
   font:
     text: Raleway
     code: Ubuntu Mono
@@ -85,8 +85,8 @@ markdown_extensions:
     custom_checkbox: true
 - attr_list
 - pymdownx.emoji:
-    emoji_index: !!python/name:material.extensions.emoji.twemoji ""
-    emoji_generator: !!python/name:material.extensions.emoji.to_svg ""
+   emoji_index: !!python/name:material.extensions.emoji.twemoji
+   emoji_generator: !!python/name:material.extensions.emoji.to_svg
 - md_in_html
 # - neoteroi.cards
 
@@ -94,7 +94,4 @@ markdown_extensions:
 # navigation
 nav:
 - Home: "index.md"
-- Tools & Information:
-  - Tools&Information/index.md
-  - Information: Tools&Information/information.md
-  - Tools: Tools&Information/tools.md
+- Tools: "Tools/index.md"
