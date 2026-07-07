@@ -211,12 +211,75 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+function calculateReadingTime() {
+  const contentArea = document.querySelector('.md-content__inner');
+  if (!contentArea) return null;
+
+  // Clone to avoid modifying the original DOM
+  const clone = contentArea.cloneNode(true);
+  
+  // Remove non-content elements to avoid inflating word counts
+  clone.querySelectorAll('.linenos, .md-clipboard, .md-meta, script, style, .admonition-title').forEach(el => el.remove());
+  
+  // Get text content
+  const text = clone.innerText || clone.textContent || "";
+  
+  // Count words (split by whitespace characters)
+  const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+  const wordCount = words.length;
+  
+  if (wordCount < 5) return null;
+  
+  // Average reading speed: 200 words per minute
+  const wordsPerMinute = 200;
+  const readingTime = Math.ceil(wordCount / wordsPerMinute);
+  
+  return { wordCount, readingTime };
+}
+
+function initReadMeta() {
+  // Clear any existing widget first to prevent duplicate elements on transition
+  const existing = document.querySelectorAll('.md-read-meta');
+  existing.forEach(el => el.remove());
+
+  const stats = calculateReadingTime();
+  if (!stats) return;
+
+  const { wordCount, readingTime } = stats;
+
+  const tocInners = document.querySelectorAll('.md-sidebar--secondary .md-sidebar__inner');
+  if (tocInners.length === 0) return;
+
+  tocInners.forEach(tocInner => {
+    const widget = document.createElement('div');
+    widget.className = 'md-read-meta';
+    widget.innerHTML = `
+      <div class="md-read-meta__item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="md-read-meta__icon">
+          <path d="M12 20c4.4 0 8-3.6 8-8s-3.6-8-8-8-8 3.6-8 8 3.6 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m.5 11H11V7h1.5v4.3l3.3 1.9-.8 1.3-3.5-2.1Z"/>
+        </svg>
+        <span class="md-read-meta__text"><span class="md-read-meta__value">${readingTime}</span> min read</span>
+      </div>
+      <div class="md-read-meta__item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="md-read-meta__icon">
+          <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6Zm2 16H8v-2h8v2Zm0-4H8v-2h8v2Zm-3-5V3.5L18.5 9H13Z"/>
+        </svg>
+        <span class="md-read-meta__text"><span class="md-read-meta__value">${wordCount.toLocaleString()}</span> words</span>
+      </div>
+    `;
+
+    // Prepend to the inner secondary sidebar so it sits above the TOC
+    tocInner.insertBefore(widget, tocInner.firstChild);
+  });
+}
+
 function initAll() {
   initReadingProgressBar();
   initHeaderTrelloLinks();
   initCollapsibleSections();
   initCollapsibleTabs();
   initTldrHighlighting();
+  initReadMeta();
 }
 
 if (document.readyState === 'loading') {
@@ -228,4 +291,5 @@ if (document.readyState === 'loading') {
 if (typeof document$ !== 'undefined') {
   document$.subscribe(initAll);
 }
+
 

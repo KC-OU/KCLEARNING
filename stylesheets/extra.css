@@ -334,4 +334,57 @@
   color: #888888 !important;
 }
 
+/* Reading Meta Widget */
+.md-read-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  margin-top: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: var(--md-default-fg-color--miniscule);
+  border: 1px solid var(--md-default-fg-color--miniscule);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
+}
 
+.md-read-meta:hover {
+  transform: translateY(-2px);
+  border-color: var(--md-accent-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+[data-md-color-scheme="slate"] .md-read-meta:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.md-read-meta__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.68rem;
+  font-weight: 500;
+  transition: color 0.25s;
+}
+
+.md-read-meta:hover .md-read-meta__item {
+  color: var(--md-default-fg-color);
+}
+
+.md-read-meta__icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: fill 0.25s, transform 0.25s;
+}
+
+.md-read-meta:hover .md-read-meta__icon {
+  fill: var(--md-accent-color);
+  transform: scale(1.1);
+}
+
+.md-read-meta__text {
+  line-height: 1.2;
+}
