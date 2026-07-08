@@ -273,6 +273,71 @@ function initReadMeta() {
   });
 }
 
+function initTableCheckboxes() {
+  const tables = document.querySelectorAll('.md-content__inner table');
+  tables.forEach(table => {
+    const cells = table.querySelectorAll('td, th');
+    cells.forEach(cell => {
+      if (cell.querySelector('pre')) return;
+      processTableCheckboxNode(cell);
+    });
+  });
+}
+
+function processTableCheckboxNode(node) {
+  if (node.nodeName === 'CODE' || node.nodeName === 'PRE' || node.nodeName === 'SCRIPT' || node.nodeName === 'STYLE' || node.nodeName === 'INPUT') {
+    return;
+  }
+  
+  if (node.nodeType === Node.TEXT_NODE) {
+    const text = node.nodeValue;
+    const regex = /(?:^[ \t]*[-*+]\s+)?\[([ xX])\]/g;
+    
+    if (regex.test(text)) {
+      const fragment = document.createDocumentFragment();
+      let lastIndex = 0;
+      regex.lastIndex = 0;
+      
+      let match;
+      while ((match = regex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          fragment.appendChild(document.createTextNode(text.substring(lastIndex, match.index)));
+        }
+        
+        const isChecked = match[1].toLowerCase() === 'x';
+        const label = document.createElement('label');
+        label.className = 'task-list-control';
+        
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.disabled = true;
+        if (isChecked) {
+          input.checked = true;
+          input.setAttribute('checked', 'checked');
+        }
+        
+        const indicator = document.createElement('span');
+        indicator.className = 'task-list-indicator';
+        
+        label.appendChild(input);
+        label.appendChild(indicator);
+        fragment.appendChild(label);
+        
+        lastIndex = regex.lastIndex;
+      }
+      
+      if (lastIndex < text.length) {
+        fragment.appendChild(document.createTextNode(text.substring(lastIndex)));
+      }
+      
+      node.parentNode.replaceChild(fragment, node);
+    }
+  } else {
+    const children = Array.from(node.childNodes);
+    children.forEach(child => processTableCheckboxNode(child));
+  }
+}
+
 function initAll() {
   initReadingProgressBar();
   initHeaderTrelloLinks();
@@ -280,6 +345,7 @@ function initAll() {
   initCollapsibleTabs();
   initTldrHighlighting();
   initReadMeta();
+  initTableCheckboxes();
 }
 
 if (document.readyState === 'loading') {
