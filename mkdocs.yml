@@ -91,6 +91,9 @@ markdown_extensions:
 # - neoteroi.cards
 
 
+not_in_nav: |
+  /docs/test_images.md
+
 # navigation
 nav:
 - Home: "index.md"
