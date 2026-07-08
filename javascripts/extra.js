@@ -338,6 +338,128 @@ function processTableCheckboxNode(node) {
   }
 }
 
+function toggleFocusMode() {
+  const isFocus = document.body.classList.toggle('focus-mode');
+  localStorage.setItem('focus-mode', isFocus ? 'active' : 'inactive');
+  updateFocusButton(isFocus);
+  showShortcutToast(isFocus ? 'Focus Mode Enabled (Sidebars Hidden)' : 'Focus Mode Disabled');
+}
+
+function updateFocusButton(isFocus) {
+  const btn = document.getElementById('header-focus-toggle');
+  if (!btn) return;
+  
+  if (isFocus) {
+    btn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5m0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3Z"/>
+      </svg>
+      <span>Focused</span>
+    `;
+  } else {
+    btn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M11.83 9 10.73 7.9c.4-.33.86-.53 1.27-.53 1.66 0 3 1.34 3 3 0 .41-.2.87-.53 1.27L13 10.17c.5-.78.43-1.63-.17-2.23s-1.45-.67-2.23-.17zM2 4.27l2.28 2.28.46.46A11.72 11.72 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.02-.3 4.38-.84l2.27 2.27 1.27-1.27L3.27 3 2 4.27zM12 17c-2.76 0-5-2.24-5-5 0-.7.15-1.37.42-1.97l2.13 2.13c-.03.27-.05.55-.05.84 0 1.38 1.12 2.5 2.5 2.5.29 0 .57-.02.84-.05l2.13 2.13A7.37 7.37 0 0 1 12 17zm10-5c-.86-2.18-2.3-4.04-4.13-5.32L19.4 8.2c1.47 1 2.68 2.37 3.53 3.8-1.58 4-5.11 6.5-9.43 6.5-.47 0-.93-.03-1.39-.09l1.62 1.62c.79.06 1.59.09 2.39.09 5 0 9.27-3.11 11-7.5zM12 9c.86 0 1.66.25 2.33.68L9.68 14.33A3.99 3.99 0 0 1 12 9z"/>
+      </svg>
+      <span>Focus</span>
+    `;
+  }
+}
+
+function initFocusMode() {
+  if (document.getElementById('header-focus-toggle')) return;
+
+  const headerSource = document.querySelector('.md-header__source');
+  if (!headerSource) return;
+
+  const focusBtn = document.createElement('button');
+  focusBtn.id = 'header-focus-toggle';
+  focusBtn.className = 'header-focus-toggle-btn';
+  focusBtn.title = 'Toggle Focus Mode (Alt+F)';
+  focusBtn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M11.83 9 10.73 7.9c.4-.33.86-.53 1.27-.53 1.66 0 3 1.34 3 3 0 .41-.2.87-.53 1.27L13 10.17c.5-.78.43-1.63-.17-2.23s-1.45-.67-2.23-.17zM2 4.27l2.28 2.28.46.46A11.72 11.72 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.02-.3 4.38-.84l2.27 2.27 1.27-1.27L3.27 3 2 4.27zM12 17c-2.76 0-5-2.24-5-5 0-.7.15-1.37.42-1.97l2.13 2.13c-.03.27-.05.55-.05.84 0 1.38 1.12 2.5 2.5 2.5.29 0 .57-.02.84-.05l2.13 2.13A7.37 7.37 0 0 1 12 17zm10-5c-.86-2.18-2.3-4.04-4.13-5.32L19.4 8.2c1.47 1 2.68 2.37 3.53 3.8-1.58 4-5.11 6.5-9.43 6.5-.47 0-.93-.03-1.39-.09l1.62 1.62c.79.06 1.59.09 2.39.09 5 0 9.27-3.11 11-7.5zM12 9c.86 0 1.66.25 2.33.68L9.68 14.33A3.99 3.99 0 0 1 12 9z"/>
+    </svg>
+    <span>Focus</span>
+  `;
+
+  const gitSource = headerSource.querySelector('.md-source');
+  if (gitSource) {
+    gitSource.parentNode.appendChild(focusBtn);
+  } else {
+    headerSource.appendChild(focusBtn);
+  }
+
+  const savedState = localStorage.getItem('focus-mode');
+  if (savedState === 'active') {
+    document.body.classList.add('focus-mode');
+    updateFocusButton(true);
+  }
+
+  focusBtn.addEventListener('click', toggleFocusMode);
+}
+
+function showShortcutToast(message) {
+  let toast = document.getElementById('shortcut-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'shortcut-toast';
+    toast.className = 'shortcut-toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('visible');
+  
+  if (window.toastTimeout) {
+    clearTimeout(window.toastTimeout);
+  }
+  
+  window.toastTimeout = setTimeout(() => {
+    toast.classList.remove('visible');
+  }, 2500);
+}
+
+function toggleThemePalette() {
+  const palettes = document.querySelectorAll('input[name="__palette"]');
+  if (palettes.length <= 1) return;
+  
+  let activeIndex = -1;
+  for (let i = 0; i < palettes.length; i++) {
+    if (palettes[i].checked) {
+      activeIndex = i;
+      break;
+    }
+  }
+  
+  if (activeIndex !== -1) {
+    const nextIndex = (activeIndex + 1) % palettes.length;
+    palettes[nextIndex].click();
+    const nextScheme = palettes[nextIndex].getAttribute('data-md-color-scheme');
+    const themeLabel = nextScheme === 'slate' ? 'Dark Mode' : 'Light Mode';
+    showShortcutToast(`Theme changed to ${themeLabel}`);
+  }
+}
+
+function initKeyboardShortcuts() {
+  if (window.shortcutsInitialized) return;
+  window.shortcutsInitialized = true;
+
+  window.addEventListener('keydown', (e) => {
+    if (e.altKey && e.key.toLowerCase() === 'f') {
+      e.preventDefault();
+      toggleFocusMode();
+    }
+    if (e.altKey && e.key.toLowerCase() === 't') {
+      e.preventDefault();
+      toggleThemePalette();
+    }
+    if ((e.altKey && e.key.toLowerCase() === 'h') || (e.key === '?' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
+      e.preventDefault();
+      showShortcutToast('Shortcuts: Alt+F (Focus Mode) | Alt+T (Theme) | Alt+H or ? (Help)');
+    }
+  });
+}
+
 function initAll() {
   initReadingProgressBar();
   initHeaderTrelloLinks();
@@ -346,6 +468,8 @@ function initAll() {
   initTldrHighlighting();
   initReadMeta();
   initTableCheckboxes();
+  initFocusMode();
+  initKeyboardShortcuts();
 }
 
 if (document.readyState === 'loading') {
