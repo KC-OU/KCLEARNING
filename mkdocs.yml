@@ -102,4 +102,3 @@ nav:
 - Pentesting Methodologies and Reporting:
     - "Threat Modeling": "Pentesting Methodologies and Reporting/ThreatModelingforPentesters.md"
     - "Planning": "Pentesting Methodologies and Reporting/Planning.md"
-    - "Writing Pentest Reports": "Pentesting Methodologies and Reporting/WritingPentestReports.md"
