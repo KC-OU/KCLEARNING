@@ -18,13 +18,6 @@ This document provides a highly structured, extensive directory of operational c
 
     I would be only adding known tools to this list, as no point of me adding tools, that I have not learnt yet
 
-### Social Engineering {.collapsible}
-Tools engineered to exploit systemic human and credential authorization workflows through phishing vectors, credential harvesting, or replication of authentication workflows.
-
-???+ info "No Tool will be added to this section"
-
-    There is no Social Engineering Tool will be added to this section as most of them are python sctipts or web hosted tools. But if you have any idea or tool for this category please follow the trello board and add a suggestion
-
 ### Password Cracking & Wordlist Generation {.collapsible}
 Utilities tasked with cryptographic verification analysis, dictionary synthesis, and computational parallel extraction of plain-text states.
 

@@ -13,7 +13,6 @@ theme:
   - navigation.tabs
   - navigation.top
   - content.tooltips
-  - navigation.expand
   - search.suggest
   - search.highlight
   - navigation.tracking
@@ -21,10 +20,8 @@ theme:
   - navigation.tabs.sticky
   - navigation.path
   - toc.follow
-  - navigation.indexes
   - content.tooltips
   - navigation.instant
-  - navigation.sections
   - content.code.copy
   - content.code.annotate
   - announce.dismiss
@@ -102,3 +99,12 @@ nav:
 - Pentesting Methodologies and Reporting:
     - "Threat Modeling": "Pentesting Methodologies and Reporting/ThreatModelingforPentesters.md"
     - "Planning": "Pentesting Methodologies and Reporting/Planning.md"
+- Cyber: 
+    - "Learning": 
+        - "Main Page": "Cyber/Learning/Learning.md"
+        - "CVE": "Cyber/Learning/CVE/CVE.md"
+    - "Labs": "Cyber/Labs/index.md"
+    - "Other":
+        - "Main Page": "Cyber/Other/index.md"
+        - "OWASP JuiceBox": "Cyber/Other/OWASP-JuiceBox/index.md"
+        
