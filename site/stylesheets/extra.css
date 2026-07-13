@@ -638,37 +638,38 @@
    Focus Mode & Aesthetic Enhancements
    ========================================================================== */
 
-/* Focus Mode Layout Grid Overrides - Only applied on desktop viewports */
-@media screen and (min-width: 76.25em) {
-  body.focus-mode .md-sidebar--primary,
-  body.focus-mode .md-sidebar--secondary {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    pointer-events: none !important;
-    transform: translateX(-30px);
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    position: absolute !important;
-  }
-
-  body.focus-mode .md-sidebar--secondary {
-    transform: translateX(30px);
-  }
-
-  body.focus-mode .md-main__inner {
-    grid-template-columns: 1fr !important;
-    transition: grid-template-columns 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  body.focus-mode .md-content {
-    margin: 0 !important;
-    max-width: 100% !important;
-    transition: max-width 0.35s ease;
-  }
+/* Focus Mode Layout Grid Overrides */
+body.focus-mode .md-sidebar--primary,
+body.focus-mode .md-sidebar--secondary {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(-30px);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute !important;
 }
 
-/* Focus Toggle Button Styling - Base Styles */
+body.focus-mode .md-sidebar--secondary {
+  transform: translateX(30px);
+}
+
+body.focus-mode .md-main__inner {
+  grid-template-columns: 1fr !important;
+  transition: grid-template-columns 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.focus-mode .md-content {
+  margin: 0 !important;
+  max-width: 100% !important;
+  transition: max-width 0.35s ease;
+}
+
+/* Focus Toggle Button Styling - Positioned below header buttons */
 .header-focus-toggle-btn {
+  position: absolute !important;
+  top: 48px !important;
+  right: -120px !important; /* Centered directly under the Roadmap button */
   width: 80px !important;
   z-index: 100 !important;
   display: inline-flex !important;
@@ -689,29 +690,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   cursor: pointer;
   outline: none;
-}
-
-@media screen and (min-width: 76.25em) {
-  /* On desktop, position the header button absolute below header buttons */
-  #header-focus-toggle.header-focus-toggle-btn {
-    position: absolute !important;
-    top: 48px !important;
-    right: -120px !important; /* Centered directly under the Roadmap button */
-  }
-}
-
-/* Sidebar Focus Button styling - hidden by default, visible inside drawer on small viewports */
-.sidebar-focus-toggle-btn {
-  display: none !important;
-}
-
-@media screen and (max-width: 76.234375em) {
-  .sidebar-focus-toggle-btn {
-    display: inline-flex !important;
-    margin: 10px 16px !important;
-    width: calc(100% - 32px) !important;
-    box-sizing: border-box !important;
-  }
 }
 
 .header-focus-toggle-btn:hover {
@@ -820,6 +798,21 @@ body.focus-mode .header-focus-toggle-btn {
   border-left-color: #00e676 !important;
 }
 
+/* Image Zoom Lightbox styling */
+.md-content__inner img:not(.twemoji):not(.no-zoom) {
+  cursor: zoom-in;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+}
+
+.md-content__inner img:not(.twemoji):not(.no-zoom):hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-md-color-scheme="slate"] .md-content__inner img:not(.twemoji):not(.no-zoom):hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
 /* Premium Hover Shadows on Code blocks */
 .md-typeset pre {
   transition: box-shadow 0.25s, transform 0.25s;
@@ -847,41 +840,27 @@ body.focus-mode .header-focus-toggle-btn {
   background: rgba(120, 120, 120, 0.45);
 }
 
-/* ==========================================================================
-   Clean Left Sidebar Navigation (Traefik Style)
-   ========================================================================== */
-
-/* Smooth transitions for sidebar items */
-.md-sidebar--primary .md-nav__link {
-  transition: background-color 0.2s ease, color 0.2s ease;
+/* Mobile Navigation Section Headers */
+.mobile-nav-section-header {
+  display: none !important;
 }
 
-/* Row Hover highlights (Subtle modern pill style) */
-.md-sidebar--primary .md-nav__item > a.md-nav__link:hover,
-.md-sidebar--primary .md-nav__item > label.md-nav__link:hover,
-.md-sidebar--primary .md-nav__item > .md-nav__container:hover {
-  background-color: var(--md-default-fg-color--miniscule) !important;
-  border-radius: 4px;
+@media screen and (max-width: 76.234375em) {
+  .mobile-nav-section-header {
+    display: block !important;
+    margin-top: 24px !important;
+    padding: 0 16px 8px 16px !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--md-default-fg-color--light, #94a3b8) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    margin-bottom: 8px !important;
+  }
+  
+  [data-md-color-scheme="default"] .mobile-nav-section-header {
+    color: var(--md-default-fg-color--light, #6b7280) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  }
 }
-
-/* Active navigation item pill */
-.md-sidebar--primary .md-nav__link--active {
-  background-color: rgba(0, 148, 255, 0.08) !important;
-  color: var(--md-accent-color, #0094ff) !important;
-  font-weight: 700 !important;
-  border-radius: 4px;
-}
-
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link--active {
-  background-color: rgba(0, 148, 255, 0.15) !important;
-}
-
-/* Text styling for active section containers */
-.md-sidebar--primary .md-nav__item--active > a.md-nav__link,
-.md-sidebar--primary .md-nav__item--active > label.md-nav__link,
-.md-sidebar--primary .md-nav__item--active > .md-nav__container {
-  font-weight: 600;
-}
-
-
-

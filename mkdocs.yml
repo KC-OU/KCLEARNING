@@ -94,17 +94,22 @@ not_in_nav: |
 # navigation
 nav:
 - Home: "index.md"
-- Tools: "Tools/index.md"
-- Legal and Compliance: Legal&Compliance/index.md
-- Pentesting Methodologies and Reporting:
-    - "Threat Modeling": "Pentesting Methodologies and Reporting/ThreatModelingforPentesters.md"
-    - "Planning": "Pentesting Methodologies and Reporting/Planning.md"
+- Tools:
+    - "Overview": "Tools/Overview/index.md"
+    - "Password Cracking":
+        - "John the Ripper": "Tools/Learning/Password-Cracking/John.md"
 - Cyber: 
     - "Learning": 
         - "Main Page": "Cyber/Learning/Learning.md"
         - "CVE": "Cyber/Learning/CVE/CVE.md"
+        - Paths:
+          - Cryptography:
+              - "Cryptography Basics": "Cyber/Learning/Paths/Cryptography/Cryptography Basics.md"
     - "Labs": "Cyber/Labs/index.md"
     - "Other":
         - "Main Page": "Cyber/Other/index.md"
         - "OWASP JuiceBox": "Cyber/Other/OWASP-JuiceBox/index.md"
-        
+- Legal and Compliance: Legal&Compliance/index.md
+- Pentesting Methodologies and Reporting:
+    - "Threat Modeling": "Pentesting Methodologies and Reporting/ThreatModelingforPentesters.md"
+    - "Planning": "Pentesting Methodologies and Reporting/Planning.md"     

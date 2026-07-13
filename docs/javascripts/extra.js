@@ -346,24 +346,24 @@ function toggleFocusMode() {
 }
 
 function updateFocusButton(isFocus) {
-  const buttons = document.querySelectorAll('.header-focus-toggle-btn');
-  buttons.forEach(btn => {
-    if (isFocus) {
-      btn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5m0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3Z"/>
-        </svg>
-        <span>Focused</span>
-      `;
-    } else {
-      btn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M11.83 9 10.73 7.9c.4-.33.86-.53 1.27-.53 1.66 0 3 1.34 3 3 0 .41-.2.87-.53 1.27L13 10.17c.5-.78.43-1.63-.17-2.23s-1.45-.67-2.23-.17zM2 4.27l2.28 2.28.46.46A11.72 11.72 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.02-.3 4.38-.84l2.27 2.27 1.27-1.27L3.27 3 2 4.27zM12 17c-2.76 0-5-2.24-5-5 0-.7.15-1.37.42-1.97l2.13 2.13c-.03.27-.05.55-.05.84 0 1.38 1.12 2.5 2.5 2.5.29 0 .57-.02.84-.05l2.13 2.13A7.37 7.37 0 0 1 12 17zm10-5c-.86-2.18-2.3-4.04-4.13-5.32L19.4 8.2c1.47 1 2.68 2.37 3.53 3.8-1.58 4-5.11 6.5-9.43 6.5-.47 0-.93-.03-1.39-.09l1.62 1.62c.79.06 1.59.09 2.39.09 5 0 9.27-3.11 11-7.5zM12 9c.86 0 1.66.25 2.33.68L9.68 14.33A3.99 3.99 0 0 1 12 9z"/>
-        </svg>
-        <span>Focus</span>
-      `;
-    }
-  });
+  const btn = document.getElementById('header-focus-toggle');
+  if (!btn) return;
+  
+  if (isFocus) {
+    btn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5m0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3Z"/>
+      </svg>
+      <span>Focused</span>
+    `;
+  } else {
+    btn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M11.83 9 10.73 7.9c.4-.33.86-.53 1.27-.53 1.66 0 3 1.34 3 3 0 .41-.2.87-.53 1.27L13 10.17c.5-.78.43-1.63-.17-2.23s-1.45-.67-2.23-.17zM2 4.27l2.28 2.28.46.46A11.72 11.72 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.02-.3 4.38-.84l2.27 2.27 1.27-1.27L3.27 3 2 4.27zM12 17c-2.76 0-5-2.24-5-5 0-.7.15-1.37.42-1.97l2.13 2.13c-.03.27-.05.55-.05.84 0 1.38 1.12 2.5 2.5 2.5.29 0 .57-.02.84-.05l2.13 2.13A7.37 7.37 0 0 1 12 17zm10-5c-.86-2.18-2.3-4.04-4.13-5.32L19.4 8.2c1.47 1 2.68 2.37 3.53 3.8-1.58 4-5.11 6.5-9.43 6.5-.47 0-.93-.03-1.39-.09l1.62 1.62c.79.06 1.59.09 2.39.09 5 0 9.27-3.11 11-7.5zM12 9c.86 0 1.66.25 2.33.68L9.68 14.33A3.99 3.99 0 0 1 12 9z"/>
+      </svg>
+      <span>Focus</span>
+    `;
+  }
 }
 
 function initFocusMode() {
@@ -372,43 +372,31 @@ function initFocusMode() {
   const headerSource = document.querySelector('.md-header__source');
   if (!headerSource) return;
 
-  // 1. Create header Focus button (desktop)
-  const headerFocusBtn = document.createElement('button');
-  headerFocusBtn.id = 'header-focus-toggle';
-  headerFocusBtn.className = 'header-focus-toggle-btn';
-  headerFocusBtn.title = 'Toggle Focus Mode (Alt+F)';
+  const focusBtn = document.createElement('button');
+  focusBtn.id = 'header-focus-toggle';
+  focusBtn.className = 'header-focus-toggle-btn';
+  focusBtn.title = 'Toggle Focus Mode (Alt+F)';
+  focusBtn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M11.83 9 10.73 7.9c.4-.33.86-.53 1.27-.53 1.66 0 3 1.34 3 3 0 .41-.2.87-.53 1.27L13 10.17c.5-.78.43-1.63-.17-2.23s-1.45-.67-2.23-.17zM2 4.27l2.28 2.28.46.46A11.72 11.72 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.02-.3 4.38-.84l2.27 2.27 1.27-1.27L3.27 3 2 4.27zM12 17c-2.76 0-5-2.24-5-5 0-.7.15-1.37.42-1.97l2.13 2.13c-.03.27-.05.55-.05.84 0 1.38 1.12 2.5 2.5 2.5.29 0 .57-.02.84-.05l2.13 2.13A7.37 7.37 0 0 1 12 17zm10-5c-.86-2.18-2.3-4.04-4.13-5.32L19.4 8.2c1.47 1 2.68 2.37 3.53 3.8-1.58 4-5.11 6.5-9.43 6.5-.47 0-.93-.03-1.39-.09l1.62 1.62c.79.06 1.59.09 2.39.09 5 0 9.27-3.11 11-7.5zM12 9c.86 0 1.66.25 2.33.68L9.68 14.33A3.99 3.99 0 0 1 12 9z"/>
+    </svg>
+    <span>Focus</span>
+  `;
 
   const gitSource = headerSource.querySelector('.md-source');
   if (gitSource) {
-    gitSource.parentNode.appendChild(headerFocusBtn);
+    gitSource.parentNode.appendChild(focusBtn);
   } else {
-    headerSource.appendChild(headerFocusBtn);
-  }
-  headerFocusBtn.addEventListener('click', toggleFocusMode);
-
-  // 2. Create sidebar Focus button (mobile/tablet)
-  const primarySidebar = document.querySelector('.md-sidebar--primary .md-sidebar__inner');
-  if (primarySidebar) {
-    const sidebarFocusBtn = document.createElement('button');
-    sidebarFocusBtn.id = 'sidebar-focus-toggle';
-    sidebarFocusBtn.className = 'sidebar-focus-toggle-btn header-focus-toggle-btn';
-    sidebarFocusBtn.title = 'Toggle Focus Mode (Alt+F)';
-
-    const navSource = primarySidebar.querySelector('.md-nav__source');
-    if (navSource) {
-      navSource.appendChild(sidebarFocusBtn);
-    } else {
-      primarySidebar.insertBefore(sidebarFocusBtn, primarySidebar.firstChild);
-    }
-    sidebarFocusBtn.addEventListener('click', toggleFocusMode);
+    headerSource.appendChild(focusBtn);
   }
 
   const savedState = localStorage.getItem('focus-mode');
-  const isFocusActive = savedState === 'active';
-  if (isFocusActive) {
+  if (savedState === 'active') {
     document.body.classList.add('focus-mode');
+    updateFocusButton(true);
   }
-  updateFocusButton(isFocusActive);
+
+  focusBtn.addEventListener('click', toggleFocusMode);
 }
 
 function showShortcutToast(message) {
@@ -472,6 +460,71 @@ function initKeyboardShortcuts() {
   });
 }
 
+function initMobileNavHeaders() {
+  if (document.querySelector('.mobile-nav-section-header')) return;
+
+  const menuItems = document.querySelectorAll('.md-sidebar--primary .md-nav__list > .md-nav__item');
+  let targetItem = null;
+
+  menuItems.forEach(item => {
+    const text = item.textContent || item.innerText;
+    if (text.includes('Legal and Compliance')) {
+      targetItem = item;
+    }
+  });
+
+  if (targetItem) {
+    const headerLi = document.createElement('li');
+    headerLi.className = 'mobile-nav-section-header';
+    headerLi.textContent = 'Compliance & Reporting';
+    targetItem.parentNode.insertBefore(headerLi, targetItem);
+  }
+}
+
+function initImageLightbox() {
+  if (typeof GLightbox === 'undefined') {
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css';
+    document.head.appendChild(css);
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+    script.onload = () => {
+      setupGLightbox();
+    };
+    document.head.appendChild(script);
+  } else {
+    setupGLightbox();
+  }
+}
+
+function setupGLightbox() {
+  const images = document.querySelectorAll('.md-content__inner img:not(.twemoji):not(.no-zoom)');
+  images.forEach(img => {
+    // Only wrap if not already wrapped
+    if (img.parentElement.tagName !== 'A' || !img.parentElement.classList.contains('glightbox')) {
+      const a = document.createElement('a');
+      a.href = img.src;
+      a.className = 'glightbox';
+      a.setAttribute('data-type', 'image');
+      img.parentNode.insertBefore(a, img);
+      a.appendChild(img);
+    }
+  });
+
+  if (window.glightboxInstance) {
+    window.glightboxInstance.destroy();
+  }
+  window.glightboxInstance = GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: false,
+    zoomable: true,
+    draggable: true
+  });
+}
+
 function initAll() {
   initReadingProgressBar();
   initHeaderTrelloLinks();
@@ -482,6 +535,8 @@ function initAll() {
   initTableCheckboxes();
   initFocusMode();
   initKeyboardShortcuts();
+  initMobileNavHeaders();
+  initImageLightbox();
 }
 
 if (document.readyState === 'loading') {
