@@ -15,16 +15,16 @@
 }
 
 
-/* Header styling for multiple source buttons (GitHub + Trello) */
+/* Header styling for multiple source buttons (GitHub + Trello + Focus) */
 .md-header__source {
   display: flex !important;
-  gap: 12px !important;
+  gap: 8px !important;
   align-items: center !important;
   position: relative !important;
 }
 
 
-/* Glassmorphic Pill styling for the Trello button */
+/* Glassmorphic Pill styling for the Trello and Header buttons */
 .header-trello-with-text {
   display: flex !important;
   align-items: center !important;
@@ -41,6 +41,7 @@
   background-color: rgba(255, 255, 255, 0.12) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  flex-shrink: 0;
 }
 
 .header-trello-with-text:hover {
@@ -76,18 +77,63 @@
   white-space: nowrap !important;
 }
 
-/* Responsive: hide text on smaller screen sizes matching the default repo link */
+/* Responsive: header icons and compact controls on tablet and mobile */
 @media screen and (max-width: 76.234375em) {
-  .header-trello-text {
+  .md-header__source {
+    gap: 6px !important;
+  }
+  .header-trello-text,
+  .header-focus-text {
     display: none !important;
   }
-  .header-trello-with-text {
-    padding: 0 0.3rem !important;
+  .header-trello-with-text,
+  .header-focus-toggle-btn {
+    padding: 0 !important;
     width: 1.8rem !important;
+    height: 1.8rem !important;
     justify-content: center !important;
     border-radius: 50% !important;
+    min-width: 1.8rem !important;
   }
-
+  .md-source__repository {
+    display: none !important;
+  }
+  .md-source {
+    padding: 0 !important;
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    min-width: 1.8rem !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+  .md-source:hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6) !important;
+    transform: translateY(-1px) scale(1.03);
+  }
+  .md-source:hover .md-source__icon svg {
+    fill: #0079BF !important;
+  }
+  .md-source__icon {
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+  }
+  .md-source__icon svg {
+    width: 100% !important;
+    height: 100% !important;
+    fill: #ffffff !important;
+    transition: fill 0.25s ease;
+  }
 }
 
 /* Repo and Trello Links Button Container on index page */
@@ -665,13 +711,8 @@ body.focus-mode .md-content {
   transition: max-width 0.35s ease;
 }
 
-/* Focus Toggle Button Styling - Positioned below header buttons */
+/* Focus Toggle Button Styling */
 .header-focus-toggle-btn {
-  position: absolute !important;
-  top: 48px !important;
-  right: -120px !important; /* Centered directly under the Roadmap button */
-  width: 80px !important;
-  z-index: 100 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -690,6 +731,7 @@ body.focus-mode .md-content {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   cursor: pointer;
   outline: none;
+  flex-shrink: 0;
 }
 
 .header-focus-toggle-btn:hover {
@@ -697,21 +739,35 @@ body.focus-mode .md-content {
   color: #0079BF !important;
   border-color: #ffffff !important;
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.6) !important;
-  transform: translateY(1px) scale(1.03);
+  transform: translateY(-1px) scale(1.03);
 }
 
-.header-focus-toggle-btn svg {
-  width: 0.85rem !important;
-  height: 0.85rem !important;
+.header-focus-icon {
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.header-focus-icon svg {
+  width: 0.95rem !important;
+  height: 0.95rem !important;
+  display: block !important;
   fill: currentColor !important;
   transition: transform 0.25s ease;
 }
 
-.header-focus-toggle-btn:hover svg {
+.header-focus-toggle-btn:hover .header-focus-icon svg {
   transform: scale(1.1);
 }
 
-body.focus-mode .header-focus-toggle-btn {
+.header-focus-text {
+  white-space: nowrap !important;
+}
+
+body.focus-mode .header-focus-toggle-btn,
+.header-focus-toggle-btn.active {
   background-color: #ffffff !important;
   color: #0079BF !important;
   border-color: #ffffff !important;
@@ -864,3 +920,41 @@ body.focus-mode .header-focus-toggle-btn {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
   }
 }
+
+/* Tablet Layout & Navigation Enhancements */
+@media screen and (min-width: 60em) and (max-width: 76.234375em) {
+  .md-tabs {
+    display: block !important;
+  }
+  .md-tabs__list {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  .md-tabs__list::-webkit-scrollbar {
+    display: none !important;
+  }
+  .md-tabs__item {
+    flex-shrink: 0 !important;
+  }
+  .md-main__inner {
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
+  }
+  .md-content__inner {
+    margin-left: 0.8rem !important;
+    margin-right: 0.8rem !important;
+  }
+  .md-sidebar--secondary {
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+  }
+}
+
+/* Ensure images never overflow responsive containers */
+.md-typeset img {
+  max-width: 100%;
+}
+
